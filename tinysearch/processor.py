@@ -9,7 +9,7 @@ import os
 import uuid
 
 from enum import Enum
-from dataclasses import Field, field
+from dataclasses import field
 from dataclasses import dataclass
 from tinydb import TinyDB
 
@@ -59,8 +59,10 @@ class Store():
     def __post_init__(self) -> None:
         if not self.exists:
             self._create()
-        self.data_db = TinyDB(os.path.abspath(f'{self.workdir}{os.sep}ds-0000001-{self.data.name}.db.json'))
-        self.lookup_db = TinyDB(os.path.abspath(f'{self.workdir}{os.sep}ls-{self.data.name}.db.json'))
+
+        # TODO: using pandas and hdf store
+        # self.data_db = TinyDB(os.path.abspath(f'{self.workdir}{os.sep}ds-0000001-{self.data.name}.db.json'))
+        # self.lookup_db = TinyDB(os.path.abspath(f'{self.workdir}{os.sep}ls-{self.data.name}.db.json'))
 
     @property
     def exists(self) -> None:
